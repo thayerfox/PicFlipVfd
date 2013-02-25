@@ -14,7 +14,7 @@
 static unsigned updateTime;
 static unsigned char counter;
 
-void scrollyFunction(rom const char* string) {
+void scrollyFunction(const char* string) {
     unsigned char character = string[0];
     unsigned char i = 0;
 
@@ -37,49 +37,33 @@ void main(void) {
 
     clearDisplay();
     writeDataCommand(ENABLE_HORIZONTAL_SCROLL);
-    while(1) {
-        scrollyFunction("It Scrolls... \0");
-    }
-//    start();
-//    setRomTime("00:00:00");
-//    getTime(time);
-//    writeStringStartingAtPosition(time, 0);
+    setTime("11:59:00");
+    start();
 //    while(1) {
-//        if(updateTime) {
-//            char time[9];
-//            incrementClockBy1Second();
-//            getTime(time);
-//            writeStringStartingAtPosition(time, 0);
-//            updateTime = 0;
-//        }
+//        scrollyFunction("It Scrolls... \0");
+//    }
+    get24HTime(time);
+    writeStringStartingAtPosition(time, 0);
+    while(1) {
+        if(updateTime) {
+            char time[9];
+            incrementClockBy1Second();
+            get12HTime(time);
+            writeStringStartingAtPosition(time, 0);
+            updateTime = 0;
+        }
+    }
+}
+
+void interrupt timer1Interupt(void) {
+//    if(TMR0IE && TMR0IF) {
+        TMR1H = 0x90;
+	TMR1L += 0x90;
+        PIR1bits.TMR1IF = 0;
+        counter++;
+        if(counter >= 10) {
+            counter = 0;
+            updateTime = 1;
+        }
 //    }
 }
-
-void ISR (void)
-{
-    //writeCharacter('B' + counter);
-//    PIR1bits.TMR1IF = 0;
-//    TMR1H = 0xFF;
-//    TMR1L = 0xF1;
-//    counter++;
-//    if(counter >= 10) {
-//        counter = 0;
-//        updateTime = 1;
-//    }
-}
-
-#pragma code lowvector=0x18
-void lowvector(void)
-{
-
-_asm goto ISR _endasm
-}
-#pragma code
-
-#pragma code highvector=0x08
-void highvector(void)
-{
-
-_asm goto ISR _endasm
-}
-#pragma code

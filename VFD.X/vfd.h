@@ -49,18 +49,16 @@
 #define OVERWRITE 0x12
 #define ENABLE_HORIZONTAL_SCROLL 0x13
 #define MOVE_CURSOR 0x1B
-#define RESET 0x40
+#define VFD_RESET 0x40
 
 
 void configurePICforVFD(void);
-void writeCommand(auto unsigned char command);
-void writeDataCommand(auto char data);
-void writeCharacter(auto char character);
-void writeCharacterAtPosition(auto char character, unsigned char position);
-void writeString(auto char* string);
-void writeRomString(const rom char* string);
-void writeStringStartingAtPosition(auto char* string, unsigned char startPosition);
-void writeRomStringStartingAtPosition(const rom char* string, unsigned char startPosition);
+void writeCommand(unsigned char command);
+void writeDataCommand(char data);
+void writeCharacter(char character);
+void writeCharacterAtPosition(char character, unsigned char position);
+void writeString(char* string);
+void writeStringStartingAtPosition(char* string, unsigned char startPosition);
     
 void clearDisplay(void);
 

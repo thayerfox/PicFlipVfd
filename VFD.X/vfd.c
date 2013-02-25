@@ -19,7 +19,7 @@ void configurePICforVFD() {
     Nop();
 }
 
-void write(auto char data, unsigned char A0) {
+void write(char data, unsigned char A0) {
     DATA_COMMAND = A0;
     ENABLE_DISPLAY;
     DATA = data;
@@ -31,24 +31,24 @@ void write(auto char data, unsigned char A0) {
     Delay10TCYx(80);
 }
 
-void writeCommand(auto unsigned char command) {
+void writeCommand(unsigned char command) {
     write(command, WRITE_COMMAND);
 }
 
-void writeDataCommand(auto char command) {
+void writeDataCommand(char command) {
     write(command, WRITE_DATA);
 }
 
-void writeCharacter(auto char character) {
+void writeCharacter(char character) {
     write(character, WRITE_DATA);
 }
 
-void writeCharacterAtPosition(auto char character, unsigned char position) {
+void writeCharacterAtPosition(char character, unsigned char position) {
     writeCommand(position);
     write(character, WRITE_DATA);
 }
 
-void writeString(auto char* string) {
+void writeString(char* string) {
     unsigned char character = string[0];
     unsigned char i = 0;
 
@@ -59,31 +59,7 @@ void writeString(auto char* string) {
     }
 }
 
-void writeRomString(const rom char * string) {
-    unsigned char character = string[0];
-    unsigned char i = 0;
-
-    while(character != '\0') {
-        write(character, 0);
-        i++;
-        character = string[i];
-    }
-}
-
-void writeStringStartingAtPosition(auto char* string, unsigned char startPosition) {
-    unsigned char character = string[0];
-    unsigned char i = 0;
-
-    writeCommand(startPosition);
-
-    while(character != '\0') {
-        write(character, 0);
-        i++;
-        character = string[i];
-    }
-}
-
-void writeRomStringStartingAtPosition(const rom char * string, unsigned char startPosition) {
+void writeStringStartingAtPosition(char* string, unsigned char startPosition) {
     unsigned char character = string[0];
     unsigned char i = 0;
 
