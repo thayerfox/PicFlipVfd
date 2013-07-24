@@ -1,43 +1,58 @@
-/* 
- * File:   vfd.h
- * Author: Bananas
- *
- * Created on February 2, 2013, 4:46 PM
- */
-
 #ifndef VFD_H
 #define	VFD_H
+
+#include <p24Fxxxx.h>
+
+#ifdef	__cplusplus
+extern "C" {
+#endif
 
 #define PORT_OUTPUT 0x00
 #define OUTPUT 0
 #define PORT_INPUT 0xFF
 #define INPUT 1
 
-#define DATA_TRIS TRISB
-#define DATA LATB
+#define DATA_TRIS
+#define DATA
 
-#define WRITE_TRIS TRISDbits.TRISD7
-#define WRITE LATDbits.LATD7
+#define D0_TRIS TRISBbits.TRISB9
+#define D0 LATBbits.LATB9
+#define D1_TRIS TRISCbits.TRISC6
+#define D1 LATCbits.LATC6
+#define D2_TRIS TRISCbits.TRISC7
+#define D2 LATCbits.LATC7
+#define D3_TRIS TRISCbits.TRISC8
+#define D3 LATCbits.LATC8
+#define D4_TRIS TRISCbits.TRISC9
+#define D4 LATCbits.LATC9
+#define D5_TRIS TRISBbits.TRISB10
+#define D5 LATBbits.LATB10
+#define D6_TRIS TRISBbits.TRISB11
+#define D6 LATBbits.LATB11
+#define D7_TRIS TRISAbits.TRISA10
+#define D7 LATAbits.LATA10
 
-#define DATA_COMMAND_TRIS TRISDbits.TRISD6
-#define DATA_COMMAND LATDbits.LATD6
+#define WRITE_TRIS TRISAbits.TRISA9
+#define WRITE LATAbits.LATA9
 
-#define READ_TRIS TRISDbits.TRISD5
-#define READ LATDbits.LATD5
+#define DATA_COMMAND_TRIS TRISAbits.TRISA8
+#define DATA_COMMAND LATAbits.LATA8
 
-#define CHIP_SELECT_TRIS TRISDbits.TRISD4
-#define CHIP_SELECT LATDbits.LATD4
+#define CHIP_SELECT_TRIS TRISAbits.TRISA7
+#define CHIP_SELECT LATAbits.LATA7
 
-#define BUSY_TRIS TRISDbits.TRISD3
-#define BUSY LATDbits.LATD3
+#define READ_TRIS
+#define READ
+
+#define BUSY_TRIS
+#define BUSY
 
 
 #define WRITE_DATA 0
 #define WRITE_COMMAND 1
-#define ENABLE_DISPLAY (CHIP_SELECT = 0)
-#define DISABLE_DISPLAY (CHIP_SELECT = 1)
-#define START_WRITE (WRITE = 0)
-#define STOP_WRITE (WRITE = 1)
+//#define ENABLE_DISPLAY (CHIP_SELECT = 0)
+//#define DISABLE_DISPLAY (CHIP_SELECT = 1)
+//#define DO_WRITE_DATA do{WRITE = 0; Nop(); __delay_ms(1); WRITE = 1;} while(0)
 
 #define BACKSPACE 0x08
 #define ADVANCE_CURSOR 0x09
@@ -51,16 +66,34 @@
 #define MOVE_CURSOR 0x1B
 #define VFD_RESET 0x40
 
+typedef union _vfdData {
+    struct {
+        unsigned bit0:1;
+        unsigned bit1:1;
+        unsigned bit2:1;
+        unsigned bit3:1;
+        unsigned bit4:1;
+        unsigned bit5:1;
+        unsigned bit6:1;
+        unsigned bit7:1;
+    } bits;
+    char data;
+} vfdData;
 
 void configurePICforVFD(void);
-void writeCommand(unsigned char command);
-void writeDataCommand(char data);
-void writeCharacter(char character);
-void writeCharacterAtPosition(char character, unsigned char position);
-void writeString(char* string);
-void writeStringStartingAtPosition(char* string, unsigned char startPosition);
+void writeCommand(const vfdData *command);
+void writeDataCommand(const vfdData *data);
+void writeCharacter(const vfdData *character);
+void writeCharacterAtPosition(const vfdData *character, vfdData *position);
+void writeString(const vfdData **string);
+void writeStringStartingAtPosition(const vfdData **string, vfdData *startPosition);
     
 void clearDisplay(void);
+
+#ifdef	__cplusplus
+}
+#endif
+
 
 #endif	/* VFD_H */
 

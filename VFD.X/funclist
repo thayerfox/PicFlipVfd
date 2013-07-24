@@ -1,21 +1,18 @@
-_writeCommand: CODE, 5382 0 14
+_writeCommand: CODE, 5146 0 14
 __stringdata: SMALLCONST, 4096 0 9
-_get24HTime: CODE, 4572 0 238
-_stop: CODE, 5422 0 2
-_configurePICforVFD: CODE, 5340 0 24
-_main: CODE, 4956 0 384
-_clearDisplay: CODE, 5396 0 12
-__initialization: CODE, 5314 0 12
-_write: CODE, 5218 0 34
-_Delay10TCYx: CODE, 5364 0 18
-___lbdiv: CODE, 5036 0 54
-_writeStringStartingAtPosition: CODE, 5090 0 52
+_configurePICforVFD: CODE, 5104 0 24
+_main: CODE, 4718 0 386
+_clearDisplay: CODE, 5160 0 12
+__initialization: CODE, 5078 0 12
+_write: CODE, 4982 0 34
+_Delay10TCYx: CODE, 5128 0 18
+___lbdiv: CODE, 4794 0 54
+_writeStringStartingAtPosition: CODE, 4848 0 52
 _get12HTime: CODE, 4106 0 466
-_start: CODE, 5420 0 2
-_setTime: CODE, 4810 0 146
-_writeDataCommand: CODE, 5408 0 12
-___lbmod: CODE, 5142 0 40
-_timer1Interupt: CODE, 8 0 5210
-_configurePICforClock: CODE, 5284 0 30
-_incrementClockBy1Second: CODE, 5252 0 32
-Total: 6791
+_setTime: CODE, 4572 0 146
+_writeDataCommand: CODE, 5172 0 12
+___lbmod: CODE, 4942 0 40
+_timer1Interupt: CODE, 8 0 4934
+_configurePICforClock: CODE, 5048 0 30
+_incrementClockBy1Second: CODE, 5016 0 32
+Total: 6275
