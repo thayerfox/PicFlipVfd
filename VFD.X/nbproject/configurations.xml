@@ -16,6 +16,7 @@
       <itemPath>GenericTypeDefs.h</itemPath>
       <itemPath>Compiler.h</itemPath>
       <itemPath>HardwareProfile.h</itemPath>
+      <itemPath>webserver.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -31,6 +32,7 @@
       <itemPath>w5100.c</itemPath>
       <itemPath>FSIO.c</itemPath>
       <itemPath>SD-SPI.c</itemPath>
+      <itemPath>webserver.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

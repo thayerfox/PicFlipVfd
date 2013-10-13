@@ -8,6 +8,7 @@
 #include "w5100.h"
 #include <libpic30.h>
 #include "FSIO.h"
+#include "webserver.h"
 
 // static unsigned updateTime;
 // static unsigned char counter;
@@ -115,6 +116,7 @@ int main(void) {
 //    writeWiznet(0, 0x80);
 
     vfdByte d;
+    testserver();
     while(1) {
         LATBbits.LATB8 = 0;
         for(i = 0; i < 50; i++) {
