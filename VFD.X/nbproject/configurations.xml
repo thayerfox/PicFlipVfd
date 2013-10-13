@@ -6,8 +6,16 @@
                    projectFiles="true">
       <itemPath>vfd.h</itemPath>
       <itemPath>realTimeClock.h</itemPath>
-      <itemPath>wiznet5100.h</itemPath>
       <itemPath>config.h</itemPath>
+      <itemPath>w5100.h</itemPath>
+      <itemPath>spi.h</itemPath>
+      <itemPath>FSconfig.h</itemPath>
+      <itemPath>FSIO.h</itemPath>
+      <itemPath>SD-SPI.h</itemPath>
+      <itemPath>FSDefs.h</itemPath>
+      <itemPath>GenericTypeDefs.h</itemPath>
+      <itemPath>Compiler.h</itemPath>
+      <itemPath>HardwareProfile.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -19,6 +27,10 @@
       <itemPath>main.c</itemPath>
       <itemPath>vfd.c</itemPath>
       <itemPath>realTimeClock.c</itemPath>
+      <itemPath>spi.c</itemPath>
+      <itemPath>w5100.c</itemPath>
+      <itemPath>FSIO.c</itemPath>
+      <itemPath>SD-SPI.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -26,6 +38,9 @@
       <itemPath>Makefile</itemPath>
     </logicalFolder>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>.</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="default" type="2">
