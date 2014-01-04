@@ -42,8 +42,15 @@ unsigned char OpenSocket(unsigned char sock, unsigned char eth_protocol, unsigne
 
     while (readWiznet(sockaddr + W5100_CR_OFFSET)); // loop until device reports socket is open (blocks!!)
 
-    if (readWiznet(sockaddr + W5100_SR_OFFSET) == W5100_SKT_SR_INIT) retval = sock; // if success, return socket number
-    else CloseSocket(sock); // if failed, close socket immediately
+    char temp = readWiznet(sockaddr + W5100_SR_OFFSET);
+    if ( temp == W5100_SKT_SR_INIT)
+    {
+        retval = sock;
+    }// if success, return socket number
+    else 
+    {
+        CloseSocket(sock);
+    }// if failed, close socket immediately
 
     return retval;
 }

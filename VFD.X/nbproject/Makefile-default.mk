@@ -45,17 +45,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c vfd.c realTimeClock.c spi.c w5100.c SD-SPI.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c vfd.c realTimeClock.c spi.c w5100.c SD-SPI.c FSIO.c webserver.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/vfd.o ${OBJECTDIR}/realTimeClock.o ${OBJECTDIR}/spi.o ${OBJECTDIR}/w5100.o ${OBJECTDIR}/SD-SPI.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/vfd.o.d ${OBJECTDIR}/realTimeClock.o.d ${OBJECTDIR}/spi.o.d ${OBJECTDIR}/w5100.o.d ${OBJECTDIR}/SD-SPI.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/vfd.o ${OBJECTDIR}/realTimeClock.o ${OBJECTDIR}/spi.o ${OBJECTDIR}/w5100.o ${OBJECTDIR}/SD-SPI.o ${OBJECTDIR}/FSIO.o ${OBJECTDIR}/webserver.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/vfd.o.d ${OBJECTDIR}/realTimeClock.o.d ${OBJECTDIR}/spi.o.d ${OBJECTDIR}/w5100.o.d ${OBJECTDIR}/SD-SPI.o.d ${OBJECTDIR}/FSIO.o.d ${OBJECTDIR}/webserver.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/vfd.o ${OBJECTDIR}/realTimeClock.o ${OBJECTDIR}/spi.o ${OBJECTDIR}/w5100.o ${OBJECTDIR}/SD-SPI.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/vfd.o ${OBJECTDIR}/realTimeClock.o ${OBJECTDIR}/spi.o ${OBJECTDIR}/w5100.o ${OBJECTDIR}/SD-SPI.o ${OBJECTDIR}/FSIO.o ${OBJECTDIR}/webserver.o
 
 # Source Files
-SOURCEFILES=main.c vfd.c realTimeClock.c spi.c w5100.c SD-SPI.c
+SOURCEFILES=main.c vfd.c realTimeClock.c spi.c w5100.c SD-SPI.c FSIO.c webserver.c
 
 
 CFLAGS=
@@ -121,6 +121,20 @@ ${OBJECTDIR}/SD-SPI.o: SD-SPI.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE)  SD-SPI.c  -o ${OBJECTDIR}/SD-SPI.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/SD-SPI.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -omf=elf -Os -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/SD-SPI.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
+${OBJECTDIR}/FSIO.o: FSIO.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/FSIO.o.d 
+	@${RM} ${OBJECTDIR}/FSIO.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  FSIO.c  -o ${OBJECTDIR}/FSIO.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/FSIO.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -omf=elf -Os -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/FSIO.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/webserver.o: webserver.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/webserver.o.d 
+	@${RM} ${OBJECTDIR}/webserver.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  webserver.c  -o ${OBJECTDIR}/webserver.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/webserver.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -omf=elf -Os -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/webserver.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
 else
 ${OBJECTDIR}/main.o: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} ${OBJECTDIR} 
@@ -163,6 +177,20 @@ ${OBJECTDIR}/SD-SPI.o: SD-SPI.c  nbproject/Makefile-${CND_CONF}.mk
 	@${RM} ${OBJECTDIR}/SD-SPI.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  SD-SPI.c  -o ${OBJECTDIR}/SD-SPI.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/SD-SPI.o.d"      -g -omf=elf -Os -msmart-io=1 -Wall -msfr-warn=off
 	@${FIXDEPS} "${OBJECTDIR}/SD-SPI.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/FSIO.o: FSIO.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/FSIO.o.d 
+	@${RM} ${OBJECTDIR}/FSIO.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  FSIO.c  -o ${OBJECTDIR}/FSIO.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/FSIO.o.d"      -g -omf=elf -Os -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/FSIO.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
+	
+${OBJECTDIR}/webserver.o: webserver.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} ${OBJECTDIR} 
+	@${RM} ${OBJECTDIR}/webserver.o.d 
+	@${RM} ${OBJECTDIR}/webserver.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  webserver.c  -o ${OBJECTDIR}/webserver.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MMD -MF "${OBJECTDIR}/webserver.o.d"      -g -omf=elf -Os -msmart-io=1 -Wall -msfr-warn=off
+	@${FIXDEPS} "${OBJECTDIR}/webserver.o.d" $(SILENT)  -rsi ${MP_CC_DIR}../ 
 	
 endif
 

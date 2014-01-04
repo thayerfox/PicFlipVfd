@@ -58,23 +58,23 @@ void vfd_writeDataCommand(const vfdByte command) {
     vfd_writeByte(command, VFD_WRITE_DATA);
 }
 
-void vfd_writeChar(const vfdByte character) {
-    vfd_writeByte(character, VFD_WRITE_DATA);
+void vfd_writeChar(const char character) {
+    vfd_writeByte((vfdByte)((char)character), VFD_WRITE_DATA);
 }
 
-void vfd_writeCharAtPos(const vfdByte character, vfdByte position) {
+void vfd_writeCharAtPos(const char character, vfdByte position) {
     vfd_writeCommand(position);
     vfd_writeChar(character);
 }
 
-void vfd_writeString(const vfdByte string[]) {
+void vfd_writeString(const char string[]) {
     unsigned int i = 0;
-    for(i = 0; string[i].byte != '\0'; i++) {
+    for(i = 0; ((vfdByte)((char)(string[i]))).byte != '\0'; i++) {
         vfd_writeChar(string[i]);
     }
 }
 
-void writeStringStartingAtPositionVfd(const vfdByte string[], vfdByte startPosition) {
+void writeStringStartingAtPositionVfd(const char string[], vfdByte startPosition) {
     vfd_writeCommand(startPosition);
     vfd_writeString(string);
 }

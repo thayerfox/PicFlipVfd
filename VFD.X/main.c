@@ -5,10 +5,11 @@
 #include "vfd.h"
 //#include "realTimeClock.h"
 #include "spi.h"
-//#include "w5100.h"
+#include "FSIO.h"
+#include "w5100.h"
 #include <libpic30.h>
-//#include "FSIO.h"
-//#include "webserver.h"
+#include "FSIO.h"
+#include "webserver.h"
 
 _CONFIG1(WDTPS_PS1
   & FWPSA_PR32
@@ -40,98 +41,36 @@ _CONFIG1(WDTPS_PS1
   & DSWDTEN_OFF) 
 
 int main(void) {
+    unsigned int i;
+    FSFILE *file;
+    char str[10] = "\0\0\0\0\0\0\0\0\0\0";
+
     TRISBbits.TRISB8 = 0;
-//    unsigned int j = 0;
-//    while (1) {
-//        LATBbits.LATB8 ^= 1;
-//        for (j = 0; j < 65535; j++) {
-//            Nop();
-//        }
-//        for (j = 0; j < 65535; j++) {
-//            Nop();
-//        }
-//    }
+
+    // Delay 5s to allow VFD to power up
+    for(i = 0; i < 50; i++) {
+        __delay_ms(100);
+        LATBbits.LATB8 ^= 1;
+    }
+
+    initSPI();
+    initW5100();
     vfd_init();
-//    initSPI();
-//    initW5100();
+    FSInit();
     vfd_clear();
-//    int i;
-//    FSFILE *testFile;
-    vfdByte vfdData[20];
-//    char data[20];
 
-//    TRISBbits.TRISB7 = 0;
+    vfd_writeString("Noritake Itron JAPAN\0");
 
-//    for(i = 0; i < 1; i++) {
-//        __delay_us(10);
-//    }
+    vfd_clear();
+    file = FSfopen("vfd.txt", "r");
+    FSfread(str, sizeof(char), 10, file);
 
-//    int a = FSInit();
-//    testFile = FSfopen("vfd.txt", "r");
-//    int b = FSfread((void *)data, 10, 1, testFile);
-//    FSfclose(testFile);
+    vfd_writeString(str);
+    FSfclose(file);
 
-//    for (i = 0; i < 10; i++) {
-//        vfdData[i].byte = data[i];
-//    }
-//
-    vfdData[10].byte = '\0';
-    vfd_writeString(vfdData);
-    vfdData[0].byte = 'a';
-    vfdData[1].byte = 'b';
-    vfdData[2].byte = 'v';
-    vfdData[3].byte = 'd';
-    vfdData[4].byte = 'e';
-    vfdData[5].byte = 'f';
-    vfdData[6].byte = 'g';
-    vfdData[7].byte = 'h';
-    vfdData[8].byte = 'i';
-    vfdData[9].byte = 'j';
-    vfdData[10].byte = '\0';
-//    char asd = 'D';
-//    vfd_writeChar((vfdByte)asd);
-    
-//    unsigned char val = readWiznet(WIZNET_IP_ADDRESS);
-//    if (val == 192) {
-//        data.data = '1';
-////        writeCharacterVfd(&data);
-//    } else {
-//        data.data = '0';
-////        writeCharacterVfd(&data);
-//    }
-
-//    for(i = 0; i < 1; i++) {
-//            __delay_us(10);
-//    }
-
-//    writeWiznet(0, 0x80);
-
-//    vfdByte d;
-//    testserver();
-//    U1CONbits.USBEN = 0;
-    char c = 'a';
     while(1) {
-        int i = 0;
-        LATBbits.LATB8 = 0;
-        for(i = 0; i < 50; i++) {
-            __delay_ms(40);
-        }
-        c += (i % 26);
-//        vfd_writeChar((vfdByte)c);
-        LATBbits.LATB8 = 1;
-//       d.byte = readWiznet(WIZNET_GATEWAY_ADDRESS);
-
-//       if (d.byte == 192) {
-//           d.byte = '1';
-//            vfd_writeChar(d);
-//       } else {
-//           d.byte = '0';
-//           vfd_writeChar(d);
-//       }
-       
-       for(i = 0; i < 50; i++) {
-            __delay_ms(40);
-       }
+//        __delay_ms(100);
+        testserver();
     }
     return 0;
 }

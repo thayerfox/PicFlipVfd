@@ -36,7 +36,7 @@ void initW5100(void) {
     writeWiznet(WIZNET_IP_ADDRESS + 0, 192);
     writeWiznet(WIZNET_IP_ADDRESS + 1, 168);
     writeWiznet(WIZNET_IP_ADDRESS + 2, 1);
-    writeWiznet(WIZNET_IP_ADDRESS + 3, 55);
+    writeWiznet(WIZNET_IP_ADDRESS + 3, 56);
     __delay_us(50);
 
     writeWiznet(WIZNET_RX_REGISTER, 0x55);
