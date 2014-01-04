@@ -18,10 +18,10 @@
 #define VFD_D3 LATCbits.LATC8
 #define VFD_D4_TRIS TRISCbits.TRISC9
 #define VFD_D4 LATCbits.LATC9
-#define VFD_D5_TRIS TRISBbits.TRISB10
-#define VFD_D5 LATBbits.LATB10
-#define VFD_D6_TRIS TRISBbits.TRISB11
-#define VFD_D6 LATBbits.LATB11
+#define VFD_D5_TRIS TRISBbits.TRISB7
+#define VFD_D5 LATBbits.LATB7
+#define VFD_D6_TRIS TRISBbits.TRISB5
+#define VFD_D6 LATBbits.LATB5
 #define VFD_D7_TRIS TRISAbits.TRISA10
 #define VFD_D7 LATAbits.LATA10
 
