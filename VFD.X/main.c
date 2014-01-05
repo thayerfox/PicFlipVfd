@@ -26,7 +26,7 @@ _CONFIG1(WDTPS_PS1
   & FCKSM_CSDCMD
   & FNOSC_FRCPLL  //FRC+PLL
   & PLL96MHZ_ON
-  & PLLDIV_DIV2 //4M input
+  & PLLDIV_NODIV //4M input
   & IESO_ON)
  _CONFIG3(WPFP_WPFP0
   & SOSCSEL_IO  //RA4/RB4 I/O
@@ -69,7 +69,6 @@ int main(void) {
     FSfclose(file);
 
     while(1) {
-//        __delay_ms(100);
         testserver();
     }
     return 0;

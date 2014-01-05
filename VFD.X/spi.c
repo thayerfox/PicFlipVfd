@@ -24,7 +24,7 @@ void initSPI(void) {
     SPI1CON1bits.CKP = 0;
     SPI1CON1bits.MSTEN = 1;
     SPI1CON1bits.SPRE = 0b110;
-    SPI1CON1bits.PPRE = 0b11;
+    SPI1CON1bits.PPRE = 0b10;
     SPI1BUF = 0x00;
 
     SPI1CON2bits.FRMEN = 0;
