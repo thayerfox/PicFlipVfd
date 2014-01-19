@@ -35,7 +35,7 @@ __NO_HANDLES = 1;          /* Suppress handles on this device  */
 __IVT_BASE  = 0x4;
 __AIVT_BASE = 0x104;
 __DATA_BASE = 0x800;
-__CODE_BASE = 0x200;
+__CODE_BASE = 0x14C0;
 __APP_IVT_BASE = 0x1400;
 
 
