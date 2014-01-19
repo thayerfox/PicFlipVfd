@@ -233,8 +233,8 @@ int testserver(void) {
                      */
                     strcpy((char *) buf, "HTTP/1.0 200 OK\r\nContent-Type: text/html\r\nPragma: no-cache\r\n\r\n");
                     strcat((char *) buf, "<html>\r\n<body>\r\n");
-                    strcat((char *) buf, "<title>Karl's W5100 web server (ATmega644p)</title>\r\n");
-                    strcat((char *) buf, "<h2>Karl's ATmega644p web server using Wiznet W5100 chip</h2>\r\n");
+                    strcat((char *) buf, "<title>Phil's W5100 web server (ATmega644p)</title>\r\n");
+                    strcat((char *) buf, "<h2>Phil's ATmega644p web server using Wiznet W5100 chip</h2>\r\n");
                     strcat((char *) buf, "<br /><hr>\r\n");
                     if (Send(mysocket, buf, strlen((char *) buf)) == W5100_FAIL) break; // just throw out the packet for now
 

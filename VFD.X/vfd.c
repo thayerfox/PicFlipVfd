@@ -62,8 +62,8 @@ void vfd_writeChar(const char character) {
     vfd_writeByte((vfdByte)((char)character), VFD_WRITE_DATA);
 }
 
-void vfd_writeCharAtPos(const char character, vfdByte position) {
-    vfd_writeCommand(position);
+void vfd_writeCharAtPos(const char character, const char position) {
+    vfd_writeCommand((vfdByte)position);
     vfd_writeChar(character);
 }
 

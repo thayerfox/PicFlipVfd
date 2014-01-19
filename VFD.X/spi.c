@@ -45,3 +45,11 @@ unsigned char writeSpi(unsigned char data) {
     Nop();
     return SPI1BUF;
 }
+
+unsigned char readSpi() {
+    SPI1BUF = 0;
+    Nop();
+    while (SPI1STATbits.SPITBF || !SPI1STATbits.SPIRBF);
+    Nop();
+    return SPI1BUF;
+}

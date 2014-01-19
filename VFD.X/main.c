@@ -3,13 +3,14 @@
 
 #include "config.h"
 #include "vfd.h"
-//#include "realTimeClock.h"
+#include "realTimeClock.h"
 #include "spi.h"
 #include "FSIO.h"
 #include "w5100.h"
 #include <libpic30.h>
 #include "FSIO.h"
 #include "webserver.h"
+#include "temperatureSensor.h"
 
 _CONFIG1(WDTPS_PS1
   & FWPSA_PR32
@@ -38,7 +39,7 @@ _CONFIG1(WDTPS_PS1
   & DSWDTOSC_LPRC
   & RTCOSC_SOSC
   & DSBOREN_OFF
-  & DSWDTEN_OFF) 
+  & DSWDTEN_OFF)
 
 int main(void) {
     unsigned int i;
@@ -56,6 +57,8 @@ int main(void) {
     initSPI();
     initW5100();
     vfd_init();
+    initTemperatureSensor();
+
     FSInit();
     vfd_clear();
 
@@ -69,7 +72,14 @@ int main(void) {
     FSfclose(file);
 
     while(1) {
-        testserver();
+         signed int temperature = 0;
+    char tens;
+    char ones;
+       temperature = readTemperature();
+    tens = temperature / 10 + '0';
+    ones = temperature % 10 + '0';
+    vfd_writeCharAtPos(tens, 10);
+    vfd_writeCharAtPos(ones, 11);
     }
     return 0;
 }

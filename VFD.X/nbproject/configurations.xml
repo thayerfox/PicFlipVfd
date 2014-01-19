@@ -9,14 +9,12 @@
       <itemPath>config.h</itemPath>
       <itemPath>w5100.h</itemPath>
       <itemPath>spi.h</itemPath>
-      <itemPath>FSconfig.h</itemPath>
-      <itemPath>FSIO.h</itemPath>
       <itemPath>SD-SPI.h</itemPath>
       <itemPath>FSDefs.h</itemPath>
-      <itemPath>GenericTypeDefs.h</itemPath>
       <itemPath>Compiler.h</itemPath>
       <itemPath>HardwareProfile.h</itemPath>
       <itemPath>webserver.h</itemPath>
+      <itemPath>temperatureSensor.h</itemPath>
     </logicalFolder>
     <logicalFolder name="LinkerScript"
                    displayName="Linker Files"
@@ -28,12 +26,13 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>vfd.c</itemPath>
+      <itemPath>FSIO.c</itemPath>
       <itemPath>realTimeClock.c</itemPath>
+      <itemPath>SD-SPI.c</itemPath>
       <itemPath>spi.c</itemPath>
       <itemPath>w5100.c</itemPath>
-      <itemPath>SD-SPI.c</itemPath>
-      <itemPath>FSIO.c</itemPath>
       <itemPath>webserver.c</itemPath>
+      <itemPath>temperatureSensor.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -214,6 +213,7 @@
         <property key="UART 1" value="true"/>
         <property key="UART 2" value="true"/>
         <property key="USB" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

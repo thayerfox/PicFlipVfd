@@ -71,7 +71,7 @@ void vfd_init(void);
 void vfd_writeCommand(const vfdByte command);
 void vfd_writeDataCommand(const vfdByte data);
 void vfd_writeChar(const char character);
-void vfd_writeCharAtPos(const char character, vfdByte position);
+void vfd_writeCharAtPos(const char character, const char position);
 void vfd_writeString(const char string[]);
 void vfd_writeStringStartingAtPosition(const char string[], vfdByte startPosition);
     

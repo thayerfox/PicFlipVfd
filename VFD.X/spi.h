@@ -3,5 +3,6 @@
 
 void initSPI(void);
 unsigned char writeSpi(unsigned char data);
+unsigned char readSpi();
 
 #endif	/* SPI_H */
