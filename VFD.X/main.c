@@ -72,14 +72,15 @@ int main(void) {
     FSfclose(file);
 
     while(1) {
-         signed int temperature = 0;
-    char tens;
-    char ones;
-       temperature = readTemperature();
-    tens = temperature / 10 + '0';
-    ones = temperature % 10 + '0';
-    vfd_writeCharAtPos(tens, 10);
-    vfd_writeCharAtPos(ones, 11);
+//         signed int temperature = 0;
+//    char tens;
+//    char ones;
+//       temperature = readTemperature();
+//    tens = temperature / 10 + '0';
+//    ones = temperature % 10 + '0';
+//    vfd_writeCharAtPos(tens, 10);
+//    vfd_writeCharAtPos(ones, 11);
+        testserver();
     }
     return 0;
 }
