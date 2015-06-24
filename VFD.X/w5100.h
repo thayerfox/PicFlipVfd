@@ -199,8 +199,8 @@
 #define  W5100_SKT_MR_MULTI	  	0x80	  	/* support multicasting */
 
 
-void initW5100(void);
-void writeWiznet(unsigned int address, unsigned char data);
-unsigned char readWiznet(unsigned int addr);
+void w5100_init(void);
+void w5100_write(unsigned int address, unsigned char data);
+unsigned char w5100_read(unsigned int addr);
 
 #endif	/* W5100_H */

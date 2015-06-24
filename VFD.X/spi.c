@@ -2,7 +2,8 @@
 
 #include "spi.h"
 
-void initSPI(void) {
+void initSPI(void)
+{
 
     AD1PCFGbits.PCFG8 = 1;
     AD1PCFGbits.PCFG7 = 1;
@@ -38,7 +39,8 @@ void initSPI(void) {
     IEC0bits.SPF1IE = 1;
 }
 
-unsigned char writeSpi(unsigned char data) {
+unsigned char writeSpi(unsigned char data)
+{
     SPI1BUF = data;
     Nop();
     while (SPI1STATbits.SPITBF || !SPI1STATbits.SPIRBF);
@@ -46,7 +48,8 @@ unsigned char writeSpi(unsigned char data) {
     return SPI1BUF;
 }
 
-unsigned char readSpi() {
+unsigned char readSpi()
+{
     SPI1BUF = 0;
     Nop();
     while (SPI1STATbits.SPITBF || !SPI1STATbits.SPIRBF);

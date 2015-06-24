@@ -20,14 +20,16 @@ do { \
 void putDataOnPinsVfd(const vfdByte data);
 void vfd_writeByte(const vfdByte data, unsigned char A0);
 
-void vfd_init() {
+void vfd_init()
+{
     VFD_WRITE_TRIS = INPUT;
     VFD_DATA_COMMAND_TRIS = INPUT;
     VFD_CHIP_SELECT_TRIS = INPUT;
     Nop();
 } 
 
-void putDataOnPinsVfd(const vfdByte byte) {
+void putDataOnPinsVfd(const vfdByte byte)
+{
     SET_PIN(VFD_D0, VFD_D0_TRIS, byte.bits.bit0);
     SET_PIN(VFD_D1, VFD_D1_TRIS, byte.bits.bit1);
     SET_PIN(VFD_D2, VFD_D2_TRIS, byte.bits.bit2);
@@ -38,7 +40,8 @@ void putDataOnPinsVfd(const vfdByte byte) {
     SET_PIN(VFD_D7, VFD_D7_TRIS, byte.bits.bit7);
 }
 
-void vfd_writeByte(const vfdByte data, unsigned char A0) {
+void vfd_writeByte(const vfdByte data, unsigned char A0)
+{
     SET_PIN(VFD_DATA_COMMAND, VFD_DATA_COMMAND_TRIS, A0);
     SET_PIN(VFD_CHIP_SELECT, VFD_CHIP_SELECT_TRIS, 0);
     putDataOnPinsVfd(data);
@@ -50,36 +53,43 @@ void vfd_writeByte(const vfdByte data, unsigned char A0) {
      __delay_ms(100);
 }
 
-void vfd_writeCommand(const vfdByte command) {
+void vfd_writeCommand(const vfdByte command)
+{
     vfd_writeByte(command, VFD_WRITE_COMMAND);
 }
 
-void vfd_writeDataCommand(const vfdByte command) {
+void vfd_writeDataCommand(const vfdByte command)
+{
     vfd_writeByte(command, VFD_WRITE_DATA);
 }
 
-void vfd_writeChar(const char character) {
+void vfd_writeChar(const char character)
+{
     vfd_writeByte((vfdByte)((char)character), VFD_WRITE_DATA);
 }
 
-void vfd_writeCharAtPos(const char character, const char position) {
+void vfd_writeCharAtPos(const char character, const char position)
+{
     vfd_writeCommand((vfdByte)position);
     vfd_writeChar(character);
 }
 
-void vfd_writeString(const char string[]) {
+void vfd_writeString(const char string[])
+{
     unsigned int i = 0;
     for(i = 0; ((vfdByte)((char)(string[i]))).byte != '\0'; i++) {
         vfd_writeChar(string[i]);
     }
 }
 
-void writeStringStartingAtPositionVfd(const char string[], vfdByte startPosition) {
+void writeStringStartingAtPositionVfd(const char string[], vfdByte startPosition)
+{
     vfd_writeCommand(startPosition);
     vfd_writeString(string);
 }
 
-void vfd_clear(void) {
+void vfd_clear(void)
+{
     vfdByte lineFeed;
     lineFeed.byte = VFD_LINE_FEED;
     vfdByte carriageReturn;

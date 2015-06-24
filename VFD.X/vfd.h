@@ -8,20 +8,28 @@
 #define PORT_INPUT 0xFF
 #define INPUT 1
 
+// PIN 1
 #define VFD_D0_TRIS TRISBbits.TRISB9
 #define VFD_D0 LATBbits.LATB9
+// PIN 2
 #define VFD_D1_TRIS TRISCbits.TRISC6
 #define VFD_D1 LATCbits.LATC6
+// PIN 3
 #define VFD_D2_TRIS TRISCbits.TRISC7
 #define VFD_D2 LATCbits.LATC7
+// PIN 4
 #define VFD_D3_TRIS TRISCbits.TRISC8
 #define VFD_D3 LATCbits.LATC8
+// PIN 5
 #define VFD_D4_TRIS TRISCbits.TRISC9
 #define VFD_D4 LATCbits.LATC9
+// PIN 43
 #define VFD_D5_TRIS TRISBbits.TRISB7
 #define VFD_D5 LATBbits.LATB7
+//PIN 41
 #define VFD_D6_TRIS TRISBbits.TRISB5
 #define VFD_D6 LATBbits.LATB5
+// PIN 12
 #define VFD_D7_TRIS TRISAbits.TRISA10
 #define VFD_D7 LATAbits.LATA10
 

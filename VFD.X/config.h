@@ -17,7 +17,7 @@ extern "C" {
 #define TO_K(x) (x * 1000)
 #define TO_M(x) (TO_K(x) * 1000)
 
-#define _XTAL_FREQ 8000000
+#define _XTAL_FREQ 80000000
 #define FOSC _XTAL_FREQ
 #define FCY (FOSC/2)
 

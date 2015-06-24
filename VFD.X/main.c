@@ -3,14 +3,16 @@
 
 #include "config.h"
 #include "vfd.h"
-#include "realTimeClock.h"
 #include "spi.h"
 #include "FSIO.h"
 #include "w5100.h"
-#include <libpic30.h>
-#include "FSIO.h"
 #include "webserver.h"
-#include "temperatureSensor.h"
+
+#include <libpic30.h>
+
+//#define ENABLE_VFD
+//#define ENABLE_SD
+#define ENABLE_WIZNET
 
 _CONFIG1(WDTPS_PS1
   & FWPSA_PR32
@@ -41,59 +43,84 @@ _CONFIG1(WDTPS_PS1
   & DSBOREN_OFF
   & DSWDTEN_OFF)
 
-int main(void) {
+int main(void)
+{
     unsigned int i;
-    FSFILE *file;
+    FSFILE *readFile;
+    FSFILE *writeFile;
     char str[10] = "\0\0\0\0\0\0\0\0\0\0";
 
     TRISBbits.TRISB8 = 0;
+    TRISAbits.TRISA0 = 0;
+    TRISAbits.TRISA1 = 0;
 
-    // Delay 5s to allow VFD to power up
-    for(i = 0; i < 50; i++) {
+    // Delay to allow VFD to power up
+    for(i = 0; i < 5; i++)
+    {
         __delay_ms(100);
         LATBbits.LATB8 ^= 1;
     }
-
+    LATBbits.LATB8 = 0;
+#if defined (ENABLE_SD) || defined (ENABLE_WIZNET)
     initSPI();
-    initW5100();
+#endif
+#ifdef ENABLE_WIZNET
+    w5100_init();
+#endif
+#ifdef ENABLE_VFD
     vfd_init();
-    initTemperatureSensor();
-
-    FSInit();
     vfd_clear();
-
     vfd_writeString("Noritake Itron JAPAN\0");
-
     vfd_clear();
-    file = FSfopen("vfd.txt", "r");
-    FSfread(str, sizeof(char), 10, file);
-
+#endif
+#ifdef ENABLE_SD
+    int initSuccess = FSInit();
+    if (initSuccess != 0)
+    {
+#ifdef ENABLE_VFD
+        vfd_clear();
+        vfd_writeString("Fail FS Init\0");
+#endif
+        LATAbits.LATA0 = 1;
+    }
+    readFile = FSfopen("read.txt", "r");
+    if (readFile == NULL)
+    {
+#ifdef ENABLE_VFD
+        vfd_clear();
+        vfd_writeString("Fail FS Open\0");
+#endif
+        LATAbits.LATA0 = 1;
+    }
+    FSfread(str, sizeof(char), 10, readFile);
+    writeFile = FSfopen("write.txt", "w");
+    if (writeFile == NULL)
+    {
+#ifdef ENABLE_VFD
+        vfd_clear();
+        vfd_writeString("Fail FS Open\0");
+#endif
+        LATAbits.LATA1 = 1;
+    }
+    FSfwrite(str, sizeof(char), 10, writeFile);
+#ifdef ENABLE_VFD
     vfd_writeString(str);
-    FSfclose(file);
-
+#endif
+    FSfclose(readFile);
+    FSfclose(writeFile);
+#endif
     while(1) {
-//         signed int temperature = 0;
-//    char tens;
-//    char ones;
-//       temperature = readTemperature();
-//    tens = temperature / 10 + '0';
-//    ones = temperature % 10 + '0';
-//    vfd_writeCharAtPos(tens, 10);
-//    vfd_writeCharAtPos(ones, 11);
+        LATAbits.LATA0 ^= 1;
+#ifdef ENABLE_WIZNET
         testserver();
+#endif
     }
     return 0;
 }
 
-//void interrupt timer1Interupt(void) {
-//    if(PIR1bits.TMR1IF) {
-//        TMR1H = 0x10;
-//	TMR1L += 0x00;
-//        PIR1bits.TMR1IF = 0;
-//        counter++;
-//        if(counter >= 10) {
-//            counter = 0;
-//            updateTime = 1;
-//        }
-//    }
+//void _ISR _T1Interrupt(void)
+//{
+//    IEC0BITS.T1IE = 1;
+//    T1CONBITS.TON = 1;
+//    T1CONBITS.TCKPS = 0b00;
 //}
